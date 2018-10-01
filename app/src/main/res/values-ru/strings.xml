@@ -16,4 +16,6 @@
     <string name="ok">Да</string>
     <string name="cancel">Отмена</string>
     <string name="myInformationShared">ListItemActivity завершина: Моя информация для распространения</string>
+    <string name="startChatButton">Начать общение</string>
+    <string name="Send">Send</string>
 </resources>

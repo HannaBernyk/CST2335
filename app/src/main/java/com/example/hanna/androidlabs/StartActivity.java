@@ -23,6 +23,14 @@ public class StartActivity extends Activity {
         Button startActivityButton = (Button) findViewById(R.id.buttonStartActivity);
     }
 
+
+    public void onClickStartChatButton(View view){
+        Log.i(ACTIVITY_NAME, "User clicked Start Chat");
+        Intent intent = new Intent(StartActivity.this, ChatWindow.class);
+        startActivityForResult(intent, 50);
+
+    }
+
     public void startButtonClickHandler(View view){
         Intent intent = new Intent(StartActivity.this, ListItemsActivity.class);
         startActivityForResult(intent, 50);

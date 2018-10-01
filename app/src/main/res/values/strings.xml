@@ -14,4 +14,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="myInformationShared">ListItemActivity passed: My information to share</string>
+    <string name="startChatButton">Start Chat</string>
+    <string name="Send">Send</string>
 </resources>

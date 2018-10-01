@@ -23,7 +23,6 @@ public class ListItemsActivity extends Activity {
     protected static final String ACTIVITY_NAME = "ListItemsActivity";
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(ACTIVITY_NAME, "In OnCreate()");
         super.onCreate(savedInstanceState);
