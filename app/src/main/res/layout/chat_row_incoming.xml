@@ -10,8 +10,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="left"
-        android:text="new text" />
+        android:gravity="right"
+        android:text="new text"
+
+        />
 
     <ImageView
         android:id="@+id/imageViewIncomingChat"

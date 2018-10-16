@@ -1,9 +1,7 @@
 package com.example.hanna.androidlabs;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -21,66 +19,42 @@ import java.util.List;
 
 public class ChatWindow extends Activity {
     protected static final String ACTIVITY_NAME = "ChatWindowActitivy";
-    private ListView listView;
-    private EditText editText;
+    private ListView chatListView;
+    private EditText messageEditText;
     private Button sendButton;
-    private List<String> list = new ArrayList<>();
-    private ChatAdapter messageAdapter;
+    private List<String> messages = new ArrayList<>();
+    private ChatAdapter chatAdapter;
 
     private ChatDatabaseHelper chatDatabaseHelper;
-
-    //load messages from DB by using sursor
-    private void onCreate(){
-        chatDatabaseHelper = new ChatDatabaseHelper(getApplicationContext());
-        Cursor cursor = chatDatabaseHelper.getReadableDatabase().query(ChatDatabaseHelper.MESSAGE_TABLE_NAME,
-                new String[] {ChatDatabaseHelper.KEY_MESSAGE}, null, null, null, null, null);
-
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            Log.i(ACTIVITY_NAME, "SQL MESSAGE:" + cursor.getString(cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE)));
-            Log.i(ACTIVITY_NAME, "Cursor’s  column count =" + cursor.getColumnCount() );
-            list.add(cursor.getString(cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE)));
-            cursor.moveToNext();
-        }
-        cursor.close();
-    }
 
     //when I open chat window - messages are loaded and shown, they are read from DB
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreate();
         setContentView(R.layout.activity_chat_window);
+        Log.i(ACTIVITY_NAME, "In onCreate");
 
-        listView = (ListView) findViewById(R.id.listViewChat);
-        editText = (EditText) findViewById(R.id.textChat);
+        chatListView = (ListView) findViewById(R.id.listViewChat);
+        messageEditText = (EditText) findViewById(R.id.textChat);
         sendButton = (Button) findViewById(R.id.senButton);
 
-        messageAdapter = new ChatAdapter(this);
-        listView.setAdapter(messageAdapter);
+        chatDatabaseHelper = new ChatDatabaseHelper(this);
+        messages = chatDatabaseHelper.getAllMessages();
+
+        chatAdapter = new ChatAdapter(this);
+        chatListView.setAdapter(chatAdapter);
+
     }
 
     public void onClick(View view){
-        list.add(editText.getText().toString());
-        writeToDB(editText.getText().toString());
-        messageAdapter = new ChatAdapter(this);
-        messageAdapter.notifyDataSetChanged();
-        editText.setText("");
-    }
-
-    //saves to DB, when I click on Send button it saves to DB
-
-    private void writeToDB(String message){
-        ContentValues values = new ContentValues();
-        values.put(ChatDatabaseHelper.KEY_MESSAGE, message);
-        long insertId = chatDatabaseHelper.getWritableDatabase().insert(ChatDatabaseHelper.MESSAGE_TABLE_NAME, null,
-                values);
-        Cursor cursor = chatDatabaseHelper.getWritableDatabase().query(ChatDatabaseHelper.MESSAGE_TABLE_NAME,
-                new String[]{ChatDatabaseHelper.KEY_MESSAGE}, ChatDatabaseHelper.KEY_ID+ " = " + insertId, null,
-                null, null, null);
-        cursor.moveToFirst();
-        cursor.close();
+        final String message = messageEditText.getText().toString();
+        if(!message.isEmpty()){
+            messages.add(message);
+            chatDatabaseHelper.insertMessage(message);
+            chatAdapter.notifyDataSetChanged();
+            messageEditText.setText("");
+        }
     }
 
     private class ChatAdapter extends ArrayAdapter<String>{
@@ -89,11 +63,11 @@ public class ChatWindow extends Activity {
         }
 
         public int getCount(){
-            return list.size();
+            return messages.size();
         }
 
         public String getItem(int position){
-            return list.get(position);
+            return messages.get(position);
         }
 
         @NonNull
