@@ -16,7 +16,7 @@
         android:id="@+id/currentTemperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/currentWeather"
+        android:layout_above="@+id/minTemperature"
         android:layout_alignParentStart="true"
         android:text="Current Temperature: " />
 
