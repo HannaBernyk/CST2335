@@ -26,7 +26,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class WeatherForecast extends Activity {
-    protected static final String ACTIVITY_NAME = "WeatherForecast222";
+    protected static final String ACTIVITY_NAME = "WeatherForecast";
     private ProgressBar progressBar;
     private ImageView imageView;
     private TextView windSpeedTextView;
