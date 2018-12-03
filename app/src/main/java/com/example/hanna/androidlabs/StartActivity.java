@@ -34,6 +34,13 @@ public class StartActivity extends Activity {
         startActivityForResult(intent, 50);
     }
 
+    public void onClickTestToolbar(View view) {
+        Log.i(ACTIVITY_NAME, "User clicked Test Toolbar");
+        Intent intent = new Intent(StartActivity.this, TestToolbar.class);
+        startActivityForResult(intent, 50);
+    }
+
+
     public void startButtonClickHandler(View view){
         Intent intent = new Intent(StartActivity.this, ListItemsActivity.class);
         startActivityForResult(intent, 50);

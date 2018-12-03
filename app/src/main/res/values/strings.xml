@@ -11,6 +11,8 @@
     <string name="loginButton">Login</string>
     <string name="dialog_message">Do you want to finish the activity?</string>
     <string name="dialog_title">Title</string>
+    <string name="menu_dialog_title_option2">Do you want to go back?</string>
+    <string name="menu_dialog_title_option3">Please enter the new message</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="myInformationShared">ListItemActivity passed: My information to share</string>

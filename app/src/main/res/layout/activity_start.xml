@@ -46,4 +46,11 @@
         android:onClick="onClickWeatherForecast"
         android:text="Weather Forecast" />
 
+    <Button
+        android:id="@+id/buttonTestToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickTestToolbar"
+        android:text="Test Toolbar" />
+
 </LinearLayout>

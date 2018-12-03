@@ -13,6 +13,8 @@
     <string name="loginButton">Логин</string>
     <string name="dialog_message">Вы хочете закончить активность?</string>
     <string name="dialog_title">Заглавие</string>
+    <string name="menu_dialog_title_option2">Хотите ли Вы вернуться назад?</string>
+    <string name="menu_dialog_title_option3">Пожалуйста введите новое сообщение</string>
     <string name="ok">Да</string>
     <string name="cancel">Отмена</string>
     <string name="myInformationShared">ListItemActivity завершина: Моя информация для распространения</string>
